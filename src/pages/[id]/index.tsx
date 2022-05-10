@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const GET_BLOG_POST = gql`
-  query Dog($post: String!) {
-    blogPost(id: $post) {
+  query Dog($id: String!) {
+    blogPost(id: $id) {
       title
       body
     }
@@ -14,11 +14,11 @@ const GET_BLOG_POST = gql`
 
 export default function BlogPostPage() {
   const router = useRouter();
-  const { post } = router.query;
+  const { id } = router.query;
 
   const q = useQuery<IGetPostsData>(GET_BLOG_POST, {
     variables: {
-      post,
+      id,
     },
   });
 

@@ -31,8 +31,8 @@ export default function BlogPostPage() {
       <Card key={post.sys.id} {...post}>
         <Link
           href={{
-            pathname: '/[post]',
-            query: { post: post.sys.id },
+            pathname: '/[id]',
+            query: { id: post.sys.id },
           }}
         >
           <button>click</button>
