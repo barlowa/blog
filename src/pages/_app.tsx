@@ -7,6 +7,9 @@ import {
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client';
+import { ThemeProvider } from 'styled-components';
+import theme from 'styles/theme';
+import GlobalStyle from 'styles/GlobalStyle';
 
 let apolloClient: ApolloClient<any>;
 
@@ -20,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       headers: {
         ...headers,
         authorization: 'Bearer AEf7QMYxPL9rGzq0iYw8vNWzbRvGEhLrtPXHYWYYE_I',
-      }
+      },
     }));
 
     const apolloClient = new ApolloClient({
@@ -32,13 +35,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     return apolloClient;
   }, []);
 
-  let client = apolloClient ?? createApolloClient();
+  const client = apolloClient ?? createApolloClient();
 
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </ThemeProvider>
   );
 }
 
-export default MyApp
+export default MyApp;
