@@ -5,11 +5,12 @@ export interface IRightArrowButtonProps {
   width?: string;
   height?: string;
   title: string;
+  tabIndex: number;
 }
 
 export default function RightArrowButton(props: IRightArrowButtonProps) {
   return (
-    <StyledButton title={props?.title}>
+    <StyledButton title={props?.title} tabIndex={props.tabIndex}>
       <RightArrowStyle
         data-testid="arrow-style-wrapper"
         xmlns="http://www.w3.org/2000/svg"

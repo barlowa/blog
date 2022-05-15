@@ -9,11 +9,12 @@ import RightArrowButton from 'components/RightArrowButton';
 interface ICardProps extends BlogPostItem {
   children?: React.ReactNode;
   size?: 'default' | 'large';
+  tabIndex?: number;
 }
 
 const Card = (props: ICardProps) => {
   return (
-    <StyleWrapper>
+    <StyleWrapper tabIndex={props.tabIndex}>
       {props?.title && <Headline size={props?.size}>{props?.title}</Headline>}
       {props?.preface && <Preface>{props?.preface}</Preface>}
       {props?.children}
@@ -25,7 +26,11 @@ const Card = (props: ICardProps) => {
           }}
         >
           <ButtonWrapper>
-            <RightArrowButton height="10px" title="Read More" />
+            <RightArrowButton
+              tabIndex={props.tabIndex}
+              height="10px"
+              title="Read More"
+            />
           </ButtonWrapper>
         </Link>
       )}
@@ -49,6 +54,14 @@ const StyleWrapper = styled.div`
   box-shadow: 0px 0px 3px 1px #0000000d;
   border-radius: 3px;
   background-color: ${({ theme: { colours } }) => colours?.white};
+
+  &:hover {
+    box-shadow: 0px 0px 4px 1px #00000036;
+  }
+  &:focus-visible {
+    outline: 1px solid ${({ theme: { colours } }) => colours?.blue};
+    box-shadow: 0px 0px 4px 1px #00000036;
+  }
 `;
 
 const ButtonWrapper = styled.div`

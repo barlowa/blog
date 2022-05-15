@@ -31,8 +31,8 @@ export default function BlogPostPage() {
       <LoadOrError {...q}>
         <article>
           <GridWrapper>
-            {q?.data?.blogPostCollection?.items.map(post => (
-              <Card key={post.sys.id} {...post} />
+            {q?.data?.blogPostCollection?.items.map((post, index) => (
+              <Card key={post.sys.id} {...post} tabIndex={index} />
             ))}
           </GridWrapper>
         </article>
