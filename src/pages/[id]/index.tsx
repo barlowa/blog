@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import BlogPostItem from 'types/BlogPostItem';
+import LoadOrError from 'components/LoadOrError';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -29,13 +30,13 @@ export default function BlogPostPage() {
   if (q.error) return <div>{q.error?.message}</div>;
 
   return (
-    <div>
-      <h1>title:{q.data.blogPost.title}</h1>
-      <p>Post: {q.data.blogPost.body}</p>
+    <LoadOrError {...q}>
+      <h1>{q.data.blogPost.title}</h1>
+      <p>{q.data.blogPost.body}</p>
       <Link href={'/'}>
         <button>back</button>
       </Link>
-    </div>
+    </LoadOrError>
   );
 }
 
