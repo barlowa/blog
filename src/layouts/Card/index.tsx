@@ -14,19 +14,21 @@ interface ICardProps extends BlogPostItem {
 const Card = (props: ICardProps) => {
   return (
     <StyleWrapper>
-      <Headline size={props?.size}>{props?.title}</Headline>
-      <Preface>{props?.preface}</Preface>
-      {props.children}
-      <Link
-        href={{
-          pathname: '/[id]',
-          query: { id: props.sys.id },
-        }}
-      >
-        <ButtonWrapper>
-          <RightArrowButton height="10px" />
-        </ButtonWrapper>
-      </Link>
+      {props?.title && <Headline size={props?.size}>{props?.title}</Headline>}
+      {props?.preface && <Preface>{props?.preface}</Preface>}
+      {props?.children}
+      {props?.sys?.id && (
+        <Link
+          href={{
+            pathname: '/[id]',
+            query: { id: props.sys.id },
+          }}
+        >
+          <ButtonWrapper>
+            <RightArrowButton height="10px" title="Read More" />
+          </ButtonWrapper>
+        </Link>
+      )}
     </StyleWrapper>
   );
 };
@@ -46,7 +48,7 @@ const StyleWrapper = styled.div`
   border-radius: 5px;
   box-shadow: 0px 0px 3px 1px #0000000d;
   border-radius: 3px;
-  background-color: ${({ theme: { colours } }) => colours.white};
+  background-color: ${({ theme: { colours } }) => colours?.white};
 `;
 
 const ButtonWrapper = styled.div`

@@ -9,11 +9,11 @@ export default styled.h1<IHeadlineProps>`
   font-size: ${({ size, theme: { typography } }) => {
     if (size) {
       return {
-        ['default']: typography.headlineSmall,
-        ['large']: typography.headline,
+        ['default']: typography?.headlineSmall,
+        ['large']: typography?.headline,
       }[size];
     }
-    return typography.headlineSmall;
+    return typography?.headlineSmall;
   }};
-  color: ${({ theme: { colours } }) => colours.blue};
+  color: ${({ theme: { colours } }) => colours?.blue};
 `;
