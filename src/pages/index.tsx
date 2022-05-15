@@ -1,4 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
+import Headline from 'styles/Headline';
+import styled from 'styled-components';
+import LoadOrError from 'components/LoadOrError';
 import Card from 'layouts/Card';
 import BlogPostItem from 'types/BlogPostItem';
 import Link from 'next/link';
@@ -20,27 +23,65 @@ const GET_POSTS = gql`
 export default function BlogPostPage() {
   const q = useQuery<IGetPostsData>(GET_POSTS);
 
-  console.log(q.data);
-
-  if (q.loading) return <div>Loading...</div>;
-
-  if (q.error) return <div>{q.error?.message}</div>;
-
-  return q.data.blogPostCollection?.items.map(post => {
-    return (
-      <Card key={post.sys.id} {...post}>
-        <Link
-          href={{
-            pathname: '/[id]',
-            query: { id: post.sys.id },
-          }}
-        >
-          <button>click</button>
-        </Link>
-      </Card>
-    );
-  });
+  return (
+    <PageWrapper>
+      <header>
+        <Headline>From the blog</Headline>
+        <span id="header-line" />
+      </header>
+      <LoadOrError {...q}>
+        <article>
+          <GridWrapper>
+            {q?.data?.blogPostCollection?.items.map(post => (
+              <Card key={post.sys.id} {...post}>
+                <Link
+                  href={{
+                    pathname: '/[id]',
+                    query: { id: post.sys.id },
+                  }}
+                >
+                  <button>click</button>
+                </Link>
+              </Card>
+            ))}
+          </GridWrapper>
+        </article>
+      </LoadOrError>
+    </PageWrapper>
+  );
 }
+
+const PageWrapper = styled.div`
+  width: 80%;
+  margin: 2rem auto;
+  header {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 3rem 0;
+
+    #header-line {
+      height: 1px;
+      width: 100%;
+      border-top: 1px solid ${({ theme: { colours } }) => colours.blue};
+      margin-left: 2rem;
+    }
+  }
+  article {
+    padding-left: 150px;
+  }
+`;
+const GridWrapper = styled.div`
+  display: grid;
+  grid-gap: 1.5em;
+  /* set up a grid template for 3 columns */
+  grid-template-columns: repeat(3, 1fr);
+
+  /* span every 1st element to 2 columns */
+  div:nth-child(5n - 4) {
+    grid-column-start: span 2;
+  }
+`;
 
 interface IGetPostsData {
   blogPostCollection: {
