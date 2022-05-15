@@ -33,16 +33,7 @@ export default function BlogPostPage() {
         <article>
           <GridWrapper>
             {q?.data?.blogPostCollection?.items.map(post => (
-              <Card key={post.sys.id} {...post}>
-                <Link
-                  href={{
-                    pathname: '/[id]',
-                    query: { id: post.sys.id },
-                  }}
-                >
-                  <button>click</button>
-                </Link>
-              </Card>
+              <Card key={post.sys.id} {...post} />
             ))}
           </GridWrapper>
         </article>
@@ -63,7 +54,7 @@ const PageWrapper = styled.div`
     #header-line {
       height: 1px;
       width: 100%;
-      border-top: 1px solid ${({ theme: { colours } }) => colours.blue};
+      border-top: 1px solid ${({ theme: { colours } }) => colours.sky};
       margin-left: 2rem;
     }
   }
