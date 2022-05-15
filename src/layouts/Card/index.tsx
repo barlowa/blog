@@ -17,16 +17,16 @@ const Card = (props: ICardProps) => {
       <Headline size={props?.size}>{props?.title}</Headline>
       <Preface>{props?.preface}</Preface>
       {props.children}
-      <ButtonWrapper>
-        <Link
-          href={{
-            pathname: '/[id]',
-            query: { id: props.sys.id },
-          }}
-        >
+      <Link
+        href={{
+          pathname: '/[id]',
+          query: { id: props.sys.id },
+        }}
+      >
+        <ButtonWrapper>
           <RightArrowButton height="10px" />
-        </Link>
-      </ButtonWrapper>
+        </ButtonWrapper>
+      </Link>
     </StyleWrapper>
   );
 };

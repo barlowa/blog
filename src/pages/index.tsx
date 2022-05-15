@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import LoadOrError from 'components/LoadOrError';
 import Card from 'layouts/Card';
 import BlogPostItem from 'types/BlogPostItem';
-import Link from 'next/link';
 
 const GET_POSTS = gql`
   query GetPosts {
