@@ -29,7 +29,7 @@ const Card = (props: ICardProps) => {
             <RightArrowButton
               tabIndex={props.tabIndex}
               height="10px"
-              title="Read More"
+              title={`Read more about ${props.title}`}
             />
           </ButtonWrapper>
         </Link>

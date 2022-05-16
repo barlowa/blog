@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { Helmet } from 'react-helmet';
 import Headline from 'styles/Headline';
 import styled from 'styled-components';
 import LoadOrError from 'components/LoadOrError';
@@ -23,21 +24,26 @@ export default function BlogPostPage() {
   const q = useQuery<IGetPostsData>(GET_POSTS);
 
   return (
-    <PageWrapper>
-      <header>
-        <Headline>From the blog</Headline>
-        <span id="header-line" />
-      </header>
-      <LoadOrError {...q}>
-        <article>
-          <GridWrapper>
-            {q?.data?.blogPostCollection?.items.map((post, index) => (
-              <Card key={post.sys.id} {...post} tabIndex={index} />
-            ))}
-          </GridWrapper>
-        </article>
-      </LoadOrError>
-    </PageWrapper>
+    <>
+      <Helmet>
+        <title>From the blog</title>
+      </Helmet>
+      <PageWrapper>
+        <header>
+          <Headline>From the blog</Headline>
+          <span id="header-line" />
+        </header>
+        <LoadOrError {...q}>
+          <main>
+            <GridWrapper>
+              {q?.data?.blogPostCollection?.items.map((post, index) => (
+                <Card key={post.sys.id} {...post} tabIndex={index + 1} />
+              ))}
+            </GridWrapper>
+          </main>
+        </LoadOrError>
+      </PageWrapper>
+    </>
   );
 }
 
@@ -57,7 +63,7 @@ const PageWrapper = styled.div`
       margin-left: 2rem;
     }
   }
-  article {
+  main {
     padding-left: 150px;
   }
 `;

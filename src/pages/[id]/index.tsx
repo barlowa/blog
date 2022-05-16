@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { Helmet } from 'react-helmet';
 import BlogPostItem from 'types/BlogPostItem';
 import LoadOrError from 'components/LoadOrError';
 import Link from 'next/link';
@@ -31,10 +32,13 @@ export default function BlogPostPage() {
 
   return (
     <LoadOrError {...q}>
+      <Helmet>
+        <title>{q.data.blogPost.title}</title>
+      </Helmet>
       <h1>{q.data.blogPost.title}</h1>
-      <p>{q.data.blogPost.body}</p>
+      <article>{q.data.blogPost.body}</article>
       <Link href={'/'}>
-        <button>back</button>
+        <button title="back">back</button>
       </Link>
     </LoadOrError>
   );
