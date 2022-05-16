@@ -55,4 +55,9 @@ const StyledButton = styled.button`
   padding: 10px;
   border: none;
   cursor: pointer;
+  &:focus-visible {
+    outline: 1px solid ${({ theme: { colours } }) => colours?.blue};
+    box-shadow: 0px 0px 4px 1px #00000036;
+    border-radius: 2px;
+  }
 `;

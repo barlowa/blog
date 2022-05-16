@@ -21,12 +21,12 @@ export default class MyDocument extends Document {
 
       return {
         ...initialProps,
-        styles: (
-          <Html lang="en">
+        styles: [
+          <Html lang="en" key={'document'}>
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </Html>
-        ),
+          </Html>,
+        ],
       };
     } finally {
       sheet.seal();

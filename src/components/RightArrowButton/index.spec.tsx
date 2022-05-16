@@ -5,6 +5,7 @@ const props: IRightArrowButtonProps = {
   width: '10px',
   height: '10px',
   onClick: () => null,
+  tabIndex: 1,
 };
 describe('Card layout', () => {
   it('Has a title', () => {
