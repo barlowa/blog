@@ -13,7 +13,7 @@ interface ICardProps extends BlogPostItem {
 
 const Card = ({
   title = '',
-  size,
+  size = 'default',
   preface = '',
   children,
   tabIndex = 0,
