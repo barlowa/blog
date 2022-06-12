@@ -6,10 +6,10 @@ interface ILoadOrErrorProps {
 
 const LoadOrError = ({ loading, error, children }: ILoadOrErrorProps) => {
   if (loading) {
-    return <div>Loading...</div>;
+    return <p>Loading...</p>;
   }
   if (error) {
-    return <div>{error.message}</div>;
+    return <p>{error.message}</p>;
   }
 
   return <>{children}</>;
