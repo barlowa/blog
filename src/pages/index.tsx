@@ -29,18 +29,18 @@ export default function BlogPostPage() {
         <title>From the blog</title>
       </Helmet>
       <PageWrapper>
-        <header>
+        <Header>
           <Headline>From the blog</Headline>
-          <span id="header-line" />
-        </header>
+          <HorizontalLine />
+        </Header>
         <LoadOrError {...q}>
-          <main>
+          <Main>
             <GridWrapper>
               {q?.data?.blogPostCollection?.items.map((post, index) => (
                 <Card key={post.sys.id} {...post} tabIndex={index + 1} />
               ))}
             </GridWrapper>
-          </main>
+          </Main>
         </LoadOrError>
       </PageWrapper>
     </>
@@ -50,23 +50,26 @@ export default function BlogPostPage() {
 const PageWrapper = styled.div`
   width: 80%;
   margin: 2rem auto;
-  header {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    padding: 3rem 0;
-
-    #header-line {
-      height: 1px;
-      width: 100%;
-      border-top: 1px solid ${({ theme: { colours } }) => colours.sky};
-      margin-left: 2rem;
-    }
-  }
-  main {
-    padding-left: 150px;
-  }
 `;
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 3rem 0;
+`;
+
+const HorizontalLine = styled.span`
+  height: 1px;
+  width: 100%;
+  border-top: 1px solid ${({ theme: { colours } }) => colours.sky};
+  margin-left: 2rem;
+`;
+
+const Main = styled.main`
+  padding-left: 150px;
+`;
+
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 1.5em;
