@@ -8,9 +8,14 @@ export interface IRightArrowButtonProps {
   tabIndex: number;
 }
 
-export default function RightArrowButton(props: IRightArrowButtonProps) {
+export default function RightArrowButton({
+  width = '25px',
+  height = '20px',
+  title = '',
+  tabIndex = 0,
+}: IRightArrowButtonProps) {
   return (
-    <StyledButton title={props?.title} tabIndex={props.tabIndex}>
+    <StyledButton title={title} tabIndex={tabIndex}>
       <RightArrowStyle
         data-testid="arrow-style-wrapper"
         xmlns="http://www.w3.org/2000/svg"
@@ -19,8 +24,8 @@ export default function RightArrowButton(props: IRightArrowButtonProps) {
         version="1.1"
         y="0px"
         x="0px"
-        height={props?.height}
-        width={props?.width}
+        height={height}
+        width={width}
       >
         <g>
           <line

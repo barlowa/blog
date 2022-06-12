@@ -4,15 +4,15 @@ interface ILoadOrErrorProps {
   children: React.ReactNode;
 }
 
-const LoadOrError = (props: ILoadOrErrorProps) => {
-  if (props?.loading) {
+const LoadOrError = ({ loading, error, children }: ILoadOrErrorProps) => {
+  if (loading) {
     return <div>Loading...</div>;
   }
-  if (props?.error) {
-    return <div>{props.error.message}</div>;
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
-  return <div>{props.children}</div>;
+  return <>{children}</>;
 };
 
 export default LoadOrError;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import BlogPostItem from 'types/BlogPostItem';
 import Headline from 'styles/Headline';
@@ -12,36 +11,36 @@ interface ICardProps extends BlogPostItem {
   tabIndex?: number;
 }
 
-const Card = (props: ICardProps) => {
+const Card = ({
+  title = '',
+  size,
+  preface = '',
+  children,
+  tabIndex = 0,
+  sys,
+}: ICardProps) => {
   return (
-    <StyleWrapper tabIndex={props.tabIndex}>
-      {props?.title && <Headline size={props?.size}>{props?.title}</Headline>}
-      {props?.preface && <Preface>{props?.preface}</Preface>}
-      {props?.children}
-      {props?.sys?.id && (
+    <StyleWrapper tabIndex={tabIndex}>
+      {title && <Headline size={size}>{title}</Headline>}
+      {preface && <Preface>{preface}</Preface>}
+      {children}
+      {sys?.id && (
         <Link
           href={{
             pathname: '/[id]',
-            query: { id: props.sys.id },
+            query: { id: sys.id },
           }}
         >
           <ButtonWrapper>
             <RightArrowButton
-              tabIndex={props.tabIndex}
-              height="10px"
-              title={`Read more about ${props.title}`}
+              tabIndex={tabIndex}
+              title={`Read more about ${title}`}
             />
           </ButtonWrapper>
         </Link>
       )}
     </StyleWrapper>
   );
-};
-
-Card.propTypes = {
-  children: PropTypes.node,
-  preface: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 export default Card;

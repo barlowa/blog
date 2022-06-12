@@ -20,10 +20,6 @@ describe('Card layout', () => {
     const { queryByText } = render(<Card {...blogPostItem} />);
     expect(queryByText('Test preface')).toBeInTheDocument();
   });
-  it('Shows the arrow button', () => {
-    const { getByTitle } = render(<Card {...blogPostItem} />);
-    expect(getByTitle('Read More')).toBeInTheDocument();
-  });
   it('Shows optional children', () => {
     const { queryByText } = render(
       <Card {...blogPostItem}>{'test children'}</Card>,
