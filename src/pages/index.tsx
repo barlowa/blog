@@ -21,7 +21,7 @@ const GET_POSTS = gql`
 `;
 
 export default function BlogPostPage() {
-  const q = useQuery<IGetPostsData>(GET_POSTS);
+  const { loading, error, data } = useQuery<IGetPostsData>(GET_POSTS);
 
   return (
     <>
@@ -33,11 +33,11 @@ export default function BlogPostPage() {
           <Headline>From the blog</Headline>
           <HorizontalLine />
         </Header>
-        <LoadOrError {...q}>
+        <LoadOrError error={error} loading={loading}>
           <Main>
             <GridWrapper>
-              {q?.data?.blogPostCollection?.items.map((post, index) => (
-                <Card key={post.sys.id} {...post} tabIndex={index + 1} />
+              {data?.blogPostCollection?.items?.map((post, index) => (
+                <Card key={post?.sys?.id} {...post} tabIndex={index + 1} />
               ))}
             </GridWrapper>
           </Main>

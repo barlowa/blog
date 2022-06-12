@@ -15,28 +15,21 @@ const GET_BLOG_POST = gql`
 `;
 
 export default function BlogPostPage() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { query } = useRouter();
 
-  const q = useQuery<IGetPostsData>(GET_BLOG_POST, {
+  const { data, loading, error } = useQuery<IGetPostsData>(GET_BLOG_POST, {
     variables: {
-      id,
+      id: query?.id,
     },
   });
 
-  console.log(q.data);
-
-  if (q.loading) return <div>Loading...</div>;
-
-  if (q.error) return <div>{q.error?.message}</div>;
-
   return (
-    <LoadOrError {...q}>
+    <LoadOrError loading={loading} error={error}>
       <Helmet>
-        <title>{q.data.blogPost.title}</title>
+        <title>{data?.blogPost?.title}</title>
       </Helmet>
-      <h1>{q.data.blogPost.title}</h1>
-      <article>{q.data.blogPost.body}</article>
+      <h1>{data?.blogPost?.title}</h1>
+      <article>{data?.blogPost?.body}</article>
       <Link href={'/'}>
         <button title="back">back</button>
       </Link>
