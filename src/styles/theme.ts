@@ -6,10 +6,10 @@ const theme = {
     white: '#ffffff',
   },
   typography: {
-    headline: '25px',
-    headlineSmall: '21px',
-    bodyLarge: '18px',
-    body: '16px',
+    headline: '1.5em',
+    headlineSmall: '1.25em',
+    bodyLarge: '1.12em',
+    body: '1em',
   },
 };
 

@@ -49,25 +49,25 @@ export default function BlogPostPage() {
 
 const PageWrapper = styled.div`
   width: 80%;
-  margin: 2rem auto;
+  margin: 2em auto;
 `;
 
 const Header = styled.header`
   display: flex;
   align-items: center;
   white-space: nowrap;
-  padding: 3rem 0;
+  padding: 3em 0;
 `;
 
 const HorizontalLine = styled.span`
   height: 1px;
   width: 100%;
   border-top: 1px solid ${({ theme: { colours } }) => colours.sky};
-  margin-left: 2rem;
+  margin-left: 1.5em;
 `;
 
 const Main = styled.main`
-  padding-left: 150px;
+  padding-left: 10em;
 `;
 
 const GridWrapper = styled.div`

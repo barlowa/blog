@@ -49,9 +49,8 @@ const StyleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1em;
-  border-radius: 5px;
   box-shadow: 0px 0px 3px 1px #0000000d;
-  border-radius: 3px;
+  border-radius: 0.25em;
   background-color: ${({ theme: { colours } }) => colours?.white};
 
   &:hover {

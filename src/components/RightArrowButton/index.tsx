@@ -9,8 +9,8 @@ export interface IRightArrowButtonProps {
 }
 
 export default function RightArrowButton({
-  width = '25px',
-  height = '20px',
+  width = '2em',
+  height = '1em',
   title = '',
   tabIndex = 0,
 }: IRightArrowButtonProps) {
@@ -22,8 +22,8 @@ export default function RightArrowButton({
         id="right-arrow"
         viewBox="0 0 150 50"
         version="1.1"
-        y="0px"
-        x="0px"
+        // y="0px"
+        // x="0px"
         height={height}
         width={width}
       >
@@ -57,7 +57,7 @@ const StyledButton = styled.button`
   display: flex;
   background-color: transparent;
   margin: 0;
-  padding: 10px;
+  padding: 0.5em;
   border: none;
   cursor: pointer;
   &:focus-visible {
