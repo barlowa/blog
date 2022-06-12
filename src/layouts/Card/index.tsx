@@ -3,7 +3,7 @@ import BlogPostItem from 'types/BlogPostItem';
 import Headline from 'styles/Headline';
 import Link from 'next/link';
 
-import RightArrowButton from 'components/RightArrowButton';
+import RightArrow from 'components/RightArrow';
 
 interface ICardProps extends BlogPostItem {
   children?: React.ReactNode;
@@ -19,27 +19,28 @@ const Card = ({
   tabIndex = 0,
   sys,
 }: ICardProps) => {
+  if (!sys?.id) {
+    return null;
+  }
+
   return (
-    <StyleWrapper tabIndex={tabIndex}>
-      {title && <Headline size={size}>{title}</Headline>}
-      {preface && <Preface>{preface}</Preface>}
-      {children}
-      {sys?.id && (
-        <Link
-          href={{
-            pathname: '/[id]',
-            query: { id: sys.id },
-          }}
-        >
-          <ButtonWrapper>
-            <RightArrowButton
-              tabIndex={tabIndex}
-              title={`Read more about ${title}`}
-            />
-          </ButtonWrapper>
-        </Link>
-      )}
-    </StyleWrapper>
+    <Link
+      href={{
+        pathname: '/[id]',
+        query: { id: sys.id },
+      }}
+    >
+      <StyleWrapper tabIndex={tabIndex}>
+        {title && <Headline size={size}>{title}</Headline>}
+        {preface && <Preface>{preface}</Preface>}
+        {children}
+        {sys?.id && (
+          <ArrowWrapper>
+            <RightArrow />
+          </ArrowWrapper>
+        )}
+      </StyleWrapper>
+    </Link>
   );
 };
 
@@ -52,6 +53,7 @@ const StyleWrapper = styled.div`
   box-shadow: 0px 0px 3px 1px #0000000d;
   border-radius: 0.25em;
   background-color: ${({ theme: { colours } }) => colours?.white};
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0px 0px 4px 1px #00000036;
@@ -62,7 +64,7 @@ const StyleWrapper = styled.div`
   }
 `;
 
-const ButtonWrapper = styled.div`
+const ArrowWrapper = styled.div`
   align-self: flex-end;
 `;
 
